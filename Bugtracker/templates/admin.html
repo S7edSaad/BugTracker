@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Home</title> 
+   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <style>
+      
+      .card {
+          width: 300px;
+          height: 400px;
+          background-color: #fff;
+          border-radius: 10px;
+          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+          padding: 20px;
+          text-align: center;
+      }
+      .card img {
+          max-width: 300px;
+          height: 200px;
+      }
+      .card-title {
+          font-size: 1.5rem;
+          margin-bottom: 10px;
+      }
+      .card-text {
+          font-size: 1rem;
+          color: #777;
+      }
+      .btn-primary {
+          background-color: #007bff;
+          color: #fff;
+          padding: 8px 16px;
+          border: none;
+          border-radius: 5px;
+          text-decoration: none;
+          display: inline-block;
+          margin-top: 10px;
+      }
+  </style>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" >BugTracker</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link">{{request.user.first_name}} {{request.user.last_name}}</a>
+        </li>
+      </ul>
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="/tasks/{{request.user.username}}">My Tasks</a>
+        </li>
+      </ul>
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="/editaccount">Edit Password</a>
+        </li>
+      </ul>
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="/logout">Logout</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  </head>
+  <body>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <p>Hi {{request.user.first_name}}, Welcome !! You are the admin</p>
+    <div clas="container" >
+      <div class="container overflow-hidden text-center">
+        <div class="row gy-5">
+          <div class="col-3">
+            <div class="card">
+              <img src="https://images.unsplash.com/photo-1572177812156-58036aae439c?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cHJvamVjdHN8ZW58MHx8MHx8fDA%3D" class="card-img-top" alt="...">
+            
+              <div class="card-body">
+                <h5 class="card-title">Projects</h5>
+                <p class="card-text">All the Projects of the company are stored here!</p>
+                <a href="/project" class="btn btn-primary">View</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-3">
+            <div class="card">
+              <img src="https://www.testrigtechnologies.com/wp-content/uploads/2019/09/How-to-write-a-Better-Bug-Report.webp" class="card-img-top" alt="...">
+            
+              <div class="card-body">
+                <h5 class="card-title">Bugs</h5>
+                <p class="card-text">Bugs reported by the users are stored here</p>
+                <a href="bugs" class="btn btn-primary">View</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-3">
+            <div class="card">
+              <img src="data:image/png;base64,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" class="card-img-top" alt="...">
+            
+              <div class="card-body">
+                <h5 class="card-title">Users</h5>
+                <p class="card-text">All Users are present here.</p>
+                <a href="/admindisplayusers" class="btn btn-primary">View</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-3">
+            <div class="card">
+              <img src="https://thumbs.dreamstime.com/b/white-line-police-report-icon-isolated-long-shadow-red-circle-button-vector-209209012.jpg" class="card-img-top" alt="...">
+            
+              <div class="card-body">
+                <h5 class="card-title">Report</h5>
+                <p class="card-text">View Reports</p>
+                <a href="/reportusers" class="btn btn-primary">Users</a>
+                <a href="/reportdate" class="btn btn-primary">Bugs</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+</body>
+</html>

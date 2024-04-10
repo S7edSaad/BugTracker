@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Project Bug Graph</title>
+    <!-- Include Chart.js from a CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+<!-- Canvas element where the bar graph will be rendered -->
+<canvas id="bugChart" width="400" height="200"></canvas>
+
+<script>
+// Data passed from Django view
+var projectNames = {{ project_names|safe }};
+var bugTotals = {{ bug_totals|safe }};
+
+var ctx = document.getElementById('bugChart').getContext('2d');
+var bugChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: projectNames,
+        datasets: [{
+            label: 'Number of Bugs',
+            data: bugTotals,
+            backgroundColor: 'rgba(0, 123, 255, 0.5)',
+            borderColor: 'rgba(0, 123, 255, 1)',
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            y: {
+                beginAtZero: true
+            }
+        }
+    }
+});
+</script>
+
+</body>
+</html>
