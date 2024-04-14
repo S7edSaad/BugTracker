@@ -2,7 +2,7 @@
 from django.shortcuts import render,redirect,HttpResponse
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate,logout,login
-from home.models import Project,Bug
+from home.models import Project,Bug,Profile
 from datetime import datetime
 from django.db.models import Count
 from django.contrib.auth.decorators import login_required
@@ -46,6 +46,7 @@ def register(request):
         username = request.POST['username']
         passw = request.POST['pass']
         email = request.POST['email']
+        designation = request.POST['designation']
         if User.objects.filter(username=username).exists():
             return render(request,'register_error.html')
         else:
@@ -55,6 +56,8 @@ def register(request):
             newuser.username = username
             newuser.set_password(passw)
             newuser.email = email
+            profile = Profile(user=newuser,Designation = designation)
+            profile.save()
             newuser.save()
             if request.user.is_superuser:
                 return redirect('/staffdisplayusers')
@@ -147,6 +150,14 @@ def edituser(request,username):
             user.first_name = fname
             user.last_name = lname
             status = request.POST['userstatus']
+            designation = request.POST['designation']
+            try:
+                profile = Profile.objects.get(user=user)
+                profile.Designation = designation
+                profile.save()
+            except Profile.DoesNotExist:
+                profile = Profile(user=user, Designation=designation)
+                profile.save()
             if status == "Staff Member":
                 user.is_staff = True
                 user.save()

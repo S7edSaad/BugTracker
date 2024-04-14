@@ -32,7 +32,7 @@
   
   .login {
     position: relative;
-    height: 600px;
+    height: 650px;
     width: 405px;
     margin: auto;
     padding: 60px 60px;
@@ -136,6 +136,16 @@
         <div class="form-group">
           <label for="pass">Password</label>
           <input type="password" class="form-control" id="pass" name="pass" placeholder="Password" required>
+        </div>
+        <div class="form-group">
+          <label for="st">Designation</label>
+          <select id="st" name="designation" class="form-control">
+            <option selected>Client</option>
+            <option>Tester</option>
+            <option>Manager</option>
+            <option>Content Writer</option>
+            <option>Developer</option>
+          </select>
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
       </form>
