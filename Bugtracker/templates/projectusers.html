@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Bootstrap CRUD Data Table for Database with Modal Form</title>
+<title>Projects</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -69,10 +69,10 @@
 		vertical-align: middle;
     }
 	table.table tr th:first-child {
-		width: 200px;
+		width: 150px;
 	}
 	table.table tr th:last-child {
-		width: 180px;
+		width: 150px;
 	}
     table.table-striped tbody tr:nth-of-type(odd) {
     	background-color: #fcfcfc;
@@ -269,30 +269,31 @@ $(document).ready(function(){
                 <div class="table-title">
                     <div class="row">
                         <div class="col-xs-6">
-                            <h2>Manage <b>Projects</b></h2>
+                            <h2>{{project.Pname}}</h2>
                         </div>
                         <div class="col-xs-6">
-                            <a href="/base" class="btn btn-success" data-toggle="modal"><i>&#xE147;</i> <span>Home</span></a>				
+                            <a href="/project" class="btn btn-success" data-toggle="modal"><i>&#xE147;</i> <span>Back</span></a>	
                         </div>
                     </div>
                 </div>
                 <table class="table table-striped table-hover">
                     <thead>
                         <tr>
-                            <th>Name</th>
-                            <th>Status</th>
-                            <th>Description</th>
-                            <th>Date</th>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>Username</th>
+                            <th>Email</th>
+                            <th>Designation</th>
                         </tr>
                     </thead>
                     <tbody>
-                        {% for item in my_data %}
+                        {% for item in users %}
                         <tr>
-                            <td> {{item.Pname}} </td>
-                            <td> {{item.Pstatus}} </td>
-                            <td> {{item.Desc}} </td>
-                            <td> {{item.date}} </td>
-                            
+                            <td> {{item.first_name}} </td>
+                            <td> {{item.last_name}} </td>
+                            <td> {{item.username}} </td>
+                            <td> {{item.email}} </td>
+                            <td> {{item.profile.Designation}} </td>
                         </tr>
                         {% endfor %}
                     </tbody>

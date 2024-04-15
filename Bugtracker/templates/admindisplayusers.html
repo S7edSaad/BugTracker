@@ -284,6 +284,7 @@ $(document).ready(function(){
                             <th>Last Name</th>
                             <th>Username</th>
                             <th>Email</th>
+							<th>Designation</th>
                             <th>Staff Member</th>
                             <th>Date of Join</th>
                         </tr>
@@ -294,7 +295,8 @@ $(document).ready(function(){
                             <td> {{item.first_name}} </td>
                             <td> {{item.last_name}} </td>
                             <td> {{item.username}} </td>
-                            <td> {{item.Designation}} </td>
+                            <td> {{item.email}} </td>
+                            <td> {{item.profile.Designation}} </td>
                             <td> {{item.is_staff}} </td>
                             <td> {{item.date_joined}} </td>
 							<td>

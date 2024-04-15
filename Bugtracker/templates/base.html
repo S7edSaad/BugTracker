@@ -48,7 +48,12 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item active">
-          <a class="nav-link">{{request.user.first_name}} {{request.user.last_name}}</a>
+          <a class="nav-link">{{request.user.first_name}} {{request.user.last_name}} ({{request.user.profile.Designation}})</a>
+        </li>
+      </ul>
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="/userprojects/{{request.user.id}}">My Projects</a>
         </li>
       </ul>
       <!--<ul class="navbar-nav mr-auto">
@@ -92,7 +97,7 @@
             
               <div class="card-body">
                 <h5 class="card-title">Bugs</h5>
-                <p class="card-text">Bugs reported by the usres are stored here</p>
+                <p class="card-text">Bugs reported by you are displayed here</p>
                 <a href="clientbugs" class="btn btn-primary">View</a>
               </div>
             </div>

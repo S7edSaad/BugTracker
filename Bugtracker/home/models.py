@@ -22,6 +22,7 @@ class Project(models.Model):
     Pstatus = models.CharField(max_length=122)
     Desc = models.TextField()
     date = models.DateField()
+    users = models.ManyToManyField(User)
     def __str__(self):
         return self.Pname
 

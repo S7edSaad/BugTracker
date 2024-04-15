@@ -69,6 +69,13 @@
             <label for="Desc">Description</label>
             <textarea class="form-control" id="Desc" name="Desc" rows="3" name="desc"></textarea>
         </div>
+        <fieldset>
+          <legend>Assign Users:</legend>
+          {% for user in available_users %}
+              <input type="checkbox" id="user_{{ user.id }}" name="users" value="{{ user.id }}">
+              <label for="user_{{ user.id }}">{{ user.first_name }} {{user.last_name}} - {{user.profile.Designation}}</label><br>
+          {% endfor %}
+      </fieldset>
         <button type="submit" class="btn btn-primary">Add Project</button>
       </form>
     </div>

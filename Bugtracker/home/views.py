@@ -78,7 +78,11 @@ def project(request):
 
 @login_required
 def createproject(request):
-    return render(request,'addproject.html')
+    available_users = User.objects.all()
+    context = {
+        'available_users':available_users,
+    }
+    return render(request,'addproject.html',context)
 
 @login_required
 def addproject(request):
@@ -87,6 +91,9 @@ def addproject(request):
         Pstatus = request.POST.get('Pstatus')
         Desc = request.POST.get('Desc')
         project = Project(Pname = Pname, Pstatus = Pstatus, Desc = Desc, date = datetime.today())
+        user_ids = request.POST.getlist('users')
+        project.save()
+        project.users.add(*user_ids)
         project.save()
         my_data = Project.objects.all()
         return render(request,'project.html',{'my_data':my_data})
@@ -96,6 +103,16 @@ def addproject(request):
 def editproject(request, id):
     project = Project.objects.get(id=id)
     return render(request,'editproject.html',{'project':project})
+
+@login_required
+def projectusers(request, id):
+    project = Project.objects.get(id=id)
+    users = project.users.all()
+    context = {
+        'users':users,
+        'project':project,
+    }
+    return render(request,'projectusers.html',context)
 
 @login_required
 def updateproject(request, id):
@@ -117,6 +134,17 @@ def updateproject(request, id):
 def Userproject(request):
     my_data = Project.objects.all()
     return render(request,'Userproject.html',{'my_data':my_data})
+
+@login_required
+def userprojects(request,id):
+    user = User.objects.get(id=id)
+    projects = Project.objects.filter(users=user)
+    context = {
+        'user':user,
+        'projects':projects,
+    }
+    return render(request,'userprojects.html',context)
+
 
 @login_required
 def displayusers(request):

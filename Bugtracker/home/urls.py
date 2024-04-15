@@ -36,4 +36,6 @@ urlpatterns = [
     path('adduser',views.adduser,name='Admin add users'),
     path('deleteuser/<str:username>',views.deleteuser,name='Delete User'),
     path('edituser/<str:username>',views.edituser,name='Edit User'),
+    path('projectusers/<int:id>',views.projectusers,name='View User'),
+    path('userprojects/<int:id>',views.userprojects,name='View Project'),
 ]

@@ -4,13 +4,14 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Bootstrap CRUD Data Table for Database with Modal Form</title>
+<title>Projects</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
 <style>
     body {
         color: #566787;
@@ -72,7 +73,7 @@
 		width: 200px;
 	}
 	table.table tr th:last-child {
-		width: 180px;
+		width: 100px;
 	}
     table.table-striped tbody tr:nth-of-type(odd) {
     	background-color: #fcfcfc;
@@ -269,10 +270,10 @@ $(document).ready(function(){
                 <div class="table-title">
                     <div class="row">
                         <div class="col-xs-6">
-                            <h2>Manage <b>Projects</b></h2>
+                            <h2><b>{{user.first_name}} Projects</b></h2>
                         </div>
                         <div class="col-xs-6">
-                            <a href="/base" class="btn btn-success" data-toggle="modal"><i>&#xE147;</i> <span>Home</span></a>				
+                            <a href="/back" class="btn btn-success" data-toggle="modal"><i>&#xE147;</i> <span>Home</span></a>			
                         </div>
                     </div>
                 </div>
@@ -286,13 +287,12 @@ $(document).ready(function(){
                         </tr>
                     </thead>
                     <tbody>
-                        {% for item in my_data %}
+                        {% for item in projects %}
                         <tr>
-                            <td> {{item.Pname}} </td>
+							<td> {{item.Pname}} </td>
                             <td> {{item.Pstatus}} </td>
                             <td> {{item.Desc}} </td>
                             <td> {{item.date}} </td>
-                            
                         </tr>
                         {% endfor %}
                     </tbody>
