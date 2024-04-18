@@ -166,6 +166,7 @@ def deleteuser(request,username):
     user.delete()
     return redirect('/staffdisplayusers')
 
+@login_required
 def edituser(request,username):
     user = User.objects.get(username=username)
     if user.is_superuser:
