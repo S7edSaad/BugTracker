@@ -35,6 +35,7 @@ def loginuser(request):
         else:
             return render(request,'login.html')
     return render(request,'login.html')
+
 def logoutuser(request):
     logout(request)
     return redirect("/login")
@@ -213,7 +214,7 @@ def addbug(request):
         Assign = request.POST.get('Assign')
         Summary = request.POST.get('Summary')
         Desc = request.POST.get('Desc')
-        Image = request.FILES.get('Image')
+        Image = request.FILES.getlist('Image')
         status = request.POST.get('status')
         current_user = request.user.username
         bug = Bug(project=project,Severity=Severity,Priority=Priority,Assign=Assign,Summary=Summary,Desc=Desc,date=datetime.today(),created=timezone.now(),Image=Image,status=status,reportedby=current_user,resolvedby="None")
@@ -265,7 +266,14 @@ def editbug(request,id):
         bug.save()
         my_data = Bug.objects.all().order_by('created')
         reversed_data = my_data.reverse()  # Reverse the order
-        return render(request, 'bugs.html', {'reversed_data': reversed_data})
+        if request.user.is_superuser:
+            return render(request, 'bugs.html', {'reversed_data': reversed_data})
+        elif request.user.is_staff:
+            return render(request, 'bugs.html', {'reversed_data': reversed_data})
+        else:
+            my_data = Bug.objects.all().filter(reportedby=request.user).order_by('created')
+            reversed_data = my_data.reverse()  # Reverse the order
+            return render(request, 'clientbugs.html', {'reversed_data': reversed_data})
     else:
         bug = Bug.objects.get(id=id)
         project = Project.objects.all()

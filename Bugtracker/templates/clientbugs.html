@@ -300,7 +300,10 @@ $(document).ready(function(){
                             <td> {{item.Summary}} </td>
                             <td> {{item.Desc}} </td>
                             <!--<td>{{item.Image}}</td>-->
-                        </tr>
+							<td>
+								<a href="/editbug/{{item.id}}" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
+							</td>
+						</tr>
                         {% endfor %}
                     </tbody>
                 </table>

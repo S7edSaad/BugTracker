@@ -34,7 +34,7 @@ class Bug(models.Model):
     Summary = models.TextField(null=True)
     Desc = models.TextField(null=True)
     date = models.DateField()
-    Image = models.ImageField(upload_to=None, height_field=None, width_field=None, max_length=None)
+    Image = models.FileField(upload_to='file')
     status = models.CharField(max_length=50,default='Unresolved')
     created = models.DateTimeField(auto_now_add = True)
     ended = models.DateField(null=True,blank=True)
