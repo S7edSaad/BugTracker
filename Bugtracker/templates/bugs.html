@@ -290,6 +290,7 @@ $(document).ready(function(){
                             <th>Resolved by</th>
 							<th>Status</th>
 							<th>Time Taken</th>
+							<th>Image</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -298,13 +299,21 @@ $(document).ready(function(){
                             <td> {{item.project}} </td>
                             <td> {{item.Severity}} </td>
                             <td> {{item.Priority}} </td>
-                            <td> {{item.Assign}} </td>
+							<td> {{item.Assign}} {{item.profile.Designation}}</td>
                             <td> {{item.Summary}} </td>
                             <td> {{item.Desc}} </td>
 							<td> {{item.reportedby}} </td>
 							<td> {{item.resolvedby}} </td>
 							<td> {{item.status}} </td>
 							<td> {{item.timetaken}} </td>
+							<td>
+								{% if item.Image %}
+									{% load static %}
+									<img src="{% static 'images/Screenshot_10.png' %}" alt="Bug Screenshot">
+								{% else %}
+									<p>No image available</p>
+								{% endif %}
+							</td>
                             <td>
                                 <a href="/editbug/{{item.id}}" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
                                 <a href="/deletebug/{{item.id}}" onclick="return confirm('Are you sure you want to delete this item?');" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>

@@ -94,7 +94,7 @@
         <select id="Assign" name="Assign" class="form-control">
           <option selected>Choose</option>
           {% for item in users %}
-          <option>{{item.first_name}} {{item.last_name}}</option>
+          <option>{{item.first_name}} {{item.last_name}} - {{item.profile.Designation}}</option>
           {% endfor %}
       </div>
       <div class="form-group">
@@ -120,7 +120,7 @@
       </div>
       <div class="form-group">
         <label for="Image">Attach Files:</label>
-        <input type="file" id="Image" name="Image" multiple> 
+        <input type="file" id="Image" name="Image"> 
       </div>
       <button type="submit" class="btn btn-primary">Add Bug</button>
     </form>

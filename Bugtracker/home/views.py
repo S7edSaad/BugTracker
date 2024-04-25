@@ -214,7 +214,7 @@ def addbug(request):
         Assign = request.POST.get('Assign')
         Summary = request.POST.get('Summary')
         Desc = request.POST.get('Desc')
-        Image = request.FILES.getlist('Image')
+        Image = request.FILES.get('Image')
         status = request.POST.get('status')
         current_user = request.user.username
         bug = Bug(project=project,Severity=Severity,Priority=Priority,Assign=Assign,Summary=Summary,Desc=Desc,date=datetime.today(),created=timezone.now(),Image=Image,status=status,reportedby=current_user,resolvedby="None")
@@ -296,8 +296,9 @@ def deletebug(request,id):
 @login_required
 def displaytasks(request,username):
     user = User.objects.get(username = username)
-    full_name = user.first_name+" "+user.last_name
+    full_name = user.first_name+" "+user.last_name+" - "+user.profile.Designation
     bugs = Bug.objects.filter(Assign = full_name)
+    
     return render(request,'task.html',{'bugs':bugs})
 
 @login_required
