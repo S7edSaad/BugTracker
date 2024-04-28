@@ -298,7 +298,6 @@ def displaytasks(request,username):
     user = User.objects.get(username = username)
     full_name = user.first_name+" "+user.last_name+" - "+user.profile.Designation
     bugs = Bug.objects.filter(Assign = full_name)
-    
     return render(request,'task.html',{'bugs':bugs})
 
 @login_required
